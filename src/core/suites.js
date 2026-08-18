@@ -4,7 +4,7 @@ import { cryptosuite as eddsaRdfc2022 } from '@digitalbazaar/eddsa-rdfc-2022-cry
 export const SUITES = [
   {
     id: 'eddsa-rdfc-2022',
-    label: 'Ed25519 서명 · RDF 정규화',
+    label: 'Ed25519 signature · RDF canonicalisation',
     match: (proof) =>
       proof?.type === 'DataIntegrityProof' && proof?.cryptosuite === 'eddsa-rdfc-2022',
     make: () => new DataIntegrityProof({ cryptosuite: eddsaRdfc2022 }),

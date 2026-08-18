@@ -24,24 +24,24 @@ export function renderInput({ onUrl, onText, onFile, onChange, busy, values }) {
   const submitText = (e) => { e.preventDefault(); text.value.trim() && onText(text.value); };
 
   const drop = el('div', { class: 'intake panel' },
-    el('h2', { class: 'panel__name', text: '입력' }),
+    el('h2', { class: 'panel__name', text: 'Input' }),
     el('form', { class: 'intake__row', onsubmit: submitUrl },
-      el('label', { class: 'intake__label', for: 'vc-url', text: '주소' }),
+      el('label', { class: 'intake__label', for: 'vc-url', text: 'address' }),
       url,
-      el('button', { class: 'btn', type: 'submit', disabled: busy, text: '검증' })),
+      el('button', { class: 'btn', type: 'submit', disabled: busy, text: 'verify' })),
     el('form', { class: 'intake__row intake__row--stack', onsubmit: submitText },
       el('label', { class: 'intake__label', for: 'vc-text',
-        text: 'JSON 붙여넣기 · 배지 이미지 끌어놓기' }),
+        text: 'paste JSON · drop a badge image' }),
       text,
       el('div', { class: 'intake__actions' },
         el('button', {
-          class: 'btn btn--quiet', type: 'button', disabled: busy, text: '파일 열기',
+          class: 'btn btn--quiet', type: 'button', disabled: busy, text: 'open file',
           onclick: () => file.click(),
         }),
         file,
-        el('button', { class: 'btn', type: 'submit', disabled: busy, text: '검증' }))),
+        el('button', { class: 'btn', type: 'submit', disabled: busy, text: 'verify' }))),
     el('p', { class: 'intake__note',
-      text: '주소로 받을 때만 상대 서버가 열어줘야 한다. 붙여넣기와 파일은 상관없다.' }));
+      text: 'Only the address route needs the other server to allow the request. Pasting and files do not.' }));
 
   const swallow = (e) => { e.preventDefault(); };
   drop.addEventListener('dragover', swallow);

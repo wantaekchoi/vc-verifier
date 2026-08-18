@@ -127,6 +127,9 @@ img { max-width: 100%; }
 
 .verdict__icon { width: 0.62em; height: 0.62em; flex: none; }
 
+.verdict__word { display: flex; align-items: baseline; gap: 0.35em; flex-wrap: wrap; }
+.verdict__ko { font-size: 0.42em; letter-spacing: 0; color: var(--ink-2); }
+
 .band__why { display: grid; gap: 0.4rem; }
 
 .verdict__why {
@@ -272,8 +275,8 @@ img { max-width: 100%; }
   color: var(--ink-2);
 }
 
-.name__ko { display: block; color: var(--paper); }
-.spec { display: block; font-family: var(--mono); font-size: var(--t-label); color: var(--ink-3); }
+.label__term { display: block; font-family: var(--mono); color: var(--paper); }
+.label__alt { display: block; font-size: var(--t-label); color: var(--ink-3); }
 
 .val {
   font-family: var(--mono);
@@ -300,7 +303,7 @@ img { max-width: 100%; }
 .mark--note { color: var(--amber-dim); }
 
 .sig { border-top: 0; border-bottom: 2px solid var(--rule); }
-.sig .row__label .name__ko { font: 800 var(--t-panel)/1.2 var(--display); color: var(--amber); }
+.sig .row__label .label__term { font: 800 var(--t-panel)/1.2 var(--display); color: var(--amber); }
 .sig .row__pair { padding-bottom: 0.2rem; }
 
 .term {
@@ -314,9 +317,9 @@ img { max-width: 100%; }
   cursor: pointer;
 }
 
-.term .name__ko { display: inline-flex; align-items: center; gap: 0.25rem; }
+.term .label__term { display: inline-flex; align-items: center; gap: 0.25rem; }
 .row__label .term { display: block; }
-.term:hover .name__ko { color: var(--amber); }
+.term:hover .label__term { color: var(--amber); }
 
 .info { width: 0.75rem; height: 0.75rem; color: var(--amber-dim); flex: none; }
 .term:hover .info { color: var(--amber); }
@@ -344,8 +347,8 @@ img { max-width: 100%; }
 }
 
 .fingerprint__label { margin: 0 0 0.35rem; }
-.fingerprint__label .name__ko { display: inline; }
-.fingerprint__label .spec { display: inline; }
+.fingerprint__label .label__term { display: inline; }
+.fingerprint__label .label__alt { display: inline; }
 
 .fingerprint__value {
   margin: 0 0 0.5rem;
@@ -576,7 +579,7 @@ img { max-width: 100%; }
   .panel { padding-left: calc(var(--pad) + 1.75rem); }
   .panel__note { margin-top: 0; }
 
-  .row { grid-template-columns: 9rem minmax(0, 1fr) 5.5rem; }
+  .row { grid-template-columns: 11.5rem minmax(0, 1fr) 5.5rem; }
   .row__label { grid-column: 1; }
   .row__pair { grid-column: 2; }
   .row__mark { grid-column: 3; }

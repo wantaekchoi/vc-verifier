@@ -1,27 +1,27 @@
-const STATE_LABEL = { pass: '일치', fail: '어긋남', note: '보류' };
+const STATE_LABEL = { pass: 'match', fail: 'mismatch', note: 'unchecked' };
 
 export function logResult(result) {
   const { outcome, suite, rows, fetches, failure, ms, credential } = result;
-  console.groupCollapsed(`%c키 대조%c ${outcome} · ${ms}ms`,
+  console.groupCollapsed(`%cbindings%c ${outcome} · ${ms}ms`,
     'font-weight:700', 'font-weight:400;color:#666');
 
-  console.info('크리덴셜', credential.id ?? '(id 없음)');
-  console.info('서명 방식', suite?.label ?? `${result.declared} (다루지 않음)`);
+  console.info('credential', credential.id ?? '(no id)');
+  console.info('cryptosuite', suite?.label ?? `${result.declared} (not implemented)`);
 
   console.table(rows.map(({ label, left, right, state }) => ({
-    항목: label, 왼쪽: left, 오른쪽: right, 판정: STATE_LABEL[state],
+    row: label, left, right, verdict: STATE_LABEL[state],
   })));
 
   if (failure) {
-    console.warn('설명', failure.text);
-    console.warn('검증 라이브러리 원문', failure.raw);
+    console.warn('reason', failure.text);
+    console.warn('library message', failure.raw);
   }
 
   console.table(fetches.map(({ kind, url, ms: took, ok }) => ({
-    종류: kind, 주소: url, 소요: `${took}ms`, 받음: ok,
+    kind, url, ms: took, ok,
   })));
 
-  console.info('%c크리덴셜을 어디로도 보내지 않았다. 위 목록이 이 브라우저가 나간 곳 전부다.',
+  console.info('%cThe credential was never sent anywhere. The list above is everywhere this browser went.',
     'color:#666');
   console.groupEnd();
 }

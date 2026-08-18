@@ -1,0 +1,24 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2"
+  ],
+  "id": "https://wantaekchoi.github.io/vc-verifier/samples/plain-vc.json",
+  "type": [
+    "VerifiableCredential"
+  ],
+  "name": "Plain Verifiable Credential",
+  "description": "A W3C Verifiable Credentials 2.0 credential that uses no Open Badges vocabulary. It has no achievement, so a viewer that reads only Open Badges fields shows it as unnamed.",
+  "issuer": "did:key:z6MkvDqGT54cXesYGvABpF1UapVNwjCqRcafi4Px6Thv5T3Z",
+  "validFrom": "2026-08-01T00:00:00Z",
+  "credentialSubject": {
+    "id": "https://wantaekchoi.github.io/"
+  },
+  "proof": {
+    "type": "DataIntegrityProof",
+    "created": "2026-08-18T21:36:42Z",
+    "verificationMethod": "did:key:z6MkvDqGT54cXesYGvABpF1UapVNwjCqRcafi4Px6Thv5T3Z#z6MkvDqGT54cXesYGvABpF1UapVNwjCqRcafi4Px6Thv5T3Z",
+    "cryptosuite": "eddsa-rdfc-2022",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "z2b4s2kq8EcWnxEth8S69whpZhMiFuoZUhu8uirzcSqwJbk2Y98FZWrJs6qhGshCMAvhrP8bExY3h8bkx5nnCCM7L"
+  }
+}

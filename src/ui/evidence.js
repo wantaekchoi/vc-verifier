@@ -1,7 +1,7 @@
 import { el, externalLink, safeUrl, shortened } from './dom.js';
 
 const labelOf = (item) =>
-  item.name ?? (typeof item.id === 'string' ? shortened(item.id, 40, 16) : '(이름 없음)');
+  item.name ?? (typeof item.id === 'string' ? shortened(item.id, 40, 16) : '(unnamed)');
 
 const textOf = (item) => item.description ?? item.narrative ?? '';
 

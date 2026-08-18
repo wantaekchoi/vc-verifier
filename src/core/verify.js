@@ -5,9 +5,9 @@ import { bindingRows, didWebDocumentUrl, idOf } from './bindings.js';
 import { explainFailure } from './failures.js';
 
 const kindOfUrl = (url) =>
-  url.startsWith('did:') ? '신원 문서'
-  : /schema|context|\.jsonld$/.test(url) ? '용어 정의'
-  : '문서';
+  url.startsWith('did:') ? 'DID document'
+  : /schema|context|\.jsonld$/.test(url) ? 'context'
+  : 'document';
 
 function recordingLoader(record) {
   const load = securityLoader({ fetchRemoteContexts: false }).build();
@@ -37,7 +37,7 @@ async function checkSignature(credential, suite, documentLoader) {
     const errors = result.error?.errors ?? (result.error ? [result.error] : []);
     return {
       ok: false,
-      error: errors.map((e) => e?.message).filter(Boolean).join(' / ') || '서명이 맞지 않는다.',
+      error: errors.map((e) => e?.message).filter(Boolean).join(' / ') || 'The signature does not match.',
     };
   } catch (e) {
     return { ok: false, error: e.message };
@@ -52,10 +52,10 @@ async function issuerDocument(issuer, fetches) {
   const url = didWebDocumentUrl(issuer);
   const started = performance.now();
   const note = (extra) =>
-    fetches.push({ url, kind: '신원 문서', ms: Math.round(performance.now() - started), ...extra });
+    fetches.push({ url, kind: 'DID document', ms: Math.round(performance.now() - started), ...extra });
   try {
     const response = await fetch(url);
-    if (!response.ok) { note({ ok: false, error: `${response.status} 응답` }); return null; }
+    if (!response.ok) { note({ ok: false, error: `HTTP ${response.status}` }); return null; }
     const document = await response.json();
     note({ ok: true, document });
     return document.id === issuer ? document : null;
@@ -73,7 +73,7 @@ const outcomeOf = ({ signature, rows, failure }) => {
 export async function verifyCredential(credential) {
   const proof = firstProof(credential);
   if (!proof) {
-    throw new Error('서명이 붙어 있지 않다. 검증할 수 있는 크리덴셜이 아니다.');
+    throw new Error('No proof is attached. This is not a credential that can be verified.');
   }
   const suite = findSuite(proof);
   const fetches = [];
@@ -82,7 +82,7 @@ export async function verifyCredential(credential) {
     const didDocument = await issuerDocument(idOf(credential.issuer), fetches);
     return {
       outcome: 'unsupported',
-      declared: proof?.cryptosuite ?? proof?.type ?? '(서명 없음)',
+      declared: proof?.cryptosuite ?? proof?.type ?? '(no proof)',
       credential, proof, suite: null, fetches, didDocument, ms: 0,
       rows: bindingRows({ credential, didDocument, signatureConfirmed: false }),
     };

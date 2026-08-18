@@ -1,6 +1,6 @@
 import { verifyCredential } from './core/verify.js';
 import { fromFile, fromText, fromUrl } from './inputs/extract.js';
-import { renderResult } from './ui/render.js';
+import { credentialLabel, renderResult } from './ui/render.js';
 import { renderInput } from './ui/input.js';
 import { logResult } from './ui/console-log.js';
 import { clear, el, externalLink, repoMark } from './ui/dom.js';
@@ -18,27 +18,27 @@ const credentialUrlFromLocation = () => {
 };
 
 const checkedAt = () =>
-  new Date().toLocaleString('ko-KR', { dateStyle: 'long', timeStyle: 'short' });
+  new Date().toLocaleString('en-GB', { dateStyle: 'long', timeStyle: 'short' });
 
 const header = () =>
   el('header', { class: 'masthead' },
-    el('p', { class: 'masthead__title', text: '크리덴셜 검증' }),
+    el('p', { class: 'masthead__title', text: 'Credential check' }),
     el('p', { class: 'masthead__line',
-      text: '서명이 맞는지 확인하고 무엇을 보고 그렇게 판정했는지도 함께 보여준다.' }),
+      text: 'Checks whether the signature holds, and shows what it looked at to decide.' }),
     el('p', { class: 'masthead__stamp' },
-      el('span', { class: 'masthead__stampLabel', text: '대조 시각 ' }),
+      el('span', { class: 'masthead__stampLabel', text: 'checked at ' }),
       el('time', { datetime: new Date().toISOString(), text: checkedAt() }),
-      externalLink(REPO, { class: 'masthead__repo', 'aria-label': '이 페이지의 소스' },
+      externalLink(REPO, { class: 'masthead__repo', 'aria-label': 'source for this page' },
         repoMark())));
 
 const onChange = (patch) => Object.assign(state, patch);
 
-const BASE_TITLE = '크리덴셜 검증';
+const BASE_TITLE = 'Credential check';
 
 function retitle() {
-  const name = state.result?.credential?.credentialSubject?.achievement?.name;
+  const name = state.result && credentialLabel(state.result.credential);
   const verdict = state.result && {
-    pass: '통과', fail: '어긋남', unsupported: '판정 안 함', unresolved: '판정 못 함',
+    pass: 'PASS', fail: 'MISMATCH', unsupported: 'NOT JUDGED', unresolved: 'CANNOT JUDGE',
   }[state.result.outcome];
   document.title = name && verdict
     ? `${name} — ${verdict} · ${BASE_TITLE}`
@@ -49,10 +49,10 @@ function paint({ focusResult = false } = {}) {
   const parts = [
     header(),
     el('main', { class: 'outcome' },
-      state.busy ? el('p', { class: 'working', text: '대조 중' }) : null,
+      state.busy ? el('p', { class: 'working', text: 'checking' }) : null,
       state.error
         ? el('section', { class: 'trouble', tabindex: '-1' },
-            el('h1', { class: 'trouble__name', text: '읽지 못했다' }),
+            el('h1', { class: 'trouble__name', text: 'UNREADABLE' }),
             el('p', { class: 'trouble__line', text: state.error }))
         : null,
       state.result ? renderResult(state.result, state.source) : null),
