@@ -52,7 +52,10 @@ function paint({ focusResult = false } = {}) {
       state.busy ? el('p', { class: 'working', text: 'checking' }) : null,
       state.error
         ? el('section', { class: 'trouble', tabindex: '-1' },
-            el('h1', { class: 'trouble__name', text: 'UNREADABLE' }),
+            el('h1', { class: 'trouble__name' },
+              el('span', { class: 'verdict__en', text: 'UNREADABLE' }),
+              ' ',
+              el('span', { class: 'verdict__ko', text: '읽지 못했다' })),
             el('p', { class: 'trouble__line', text: state.error }))
         : null,
       state.result ? renderResult(state.result, state.source) : null),

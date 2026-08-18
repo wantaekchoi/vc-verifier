@@ -551,7 +551,7 @@ img { max-width: 100%; }
   border: 1px solid var(--alarm);
 }
 
-.trouble__name { margin: 0 0 0.35rem; font: 800 1.5rem/1.2 var(--display); color: var(--alarm); }
+.trouble__name { margin: 0 0 0.35rem; font: 800 1.5rem/1.2 var(--display); color: var(--alarm); display: flex; align-items: baseline; gap: 0.35em; flex-wrap: wrap; }
 .trouble__line { margin: 0; font-size: var(--t-body); color: var(--ink); max-width: 68ch; }
 
 .working {
