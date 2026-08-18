@@ -12,7 +12,10 @@ await build({
   minify: true,
   sourcemap: true,
   target: ['es2022'],
-  outfile: 'dist/app.js',
+  splitting: true,
+  outdir: 'dist',
+  entryNames: 'app',
+  chunkNames: 'chunk-[hash]',
 });
 
 for (const file of ['index.html', 'styles.css']) await cp(file, `dist/${file}`);

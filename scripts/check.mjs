@@ -5,12 +5,15 @@ import { fromText } from '../src/inputs/extract.js';
 const read = async (path) => JSON.parse(await readFile(path, 'utf8'));
 
 const CASES = [
-  ['valid credential', 'public/samples/genuine.json', 'pass'],
-  ['evidence swapped', 'public/samples/tampered.json', 'fail'],
-  ['cryptosuite not implemented', 'public/samples/unsupported.json', 'unsupported'],
-  ['no key named', 'public/samples/no-fragment.json', 'unresolved'],
-  ['plain VC, no Open Badges', 'public/samples/plain-vc.json', 'pass'],
+  ['valid credential', 'public/samples/genuine.json', 'pass', 'pass'],
+  ['evidence swapped', 'public/samples/tampered.json', 'fail', 'pass'],
+  ['cryptosuite not implemented', 'public/samples/unsupported.json', 'unsupported', 'pass'],
+  ['no key named', 'public/samples/no-fragment.json', 'unresolved', 'pass'],
+  ['plain VC, no Open Badges', 'public/samples/plain-vc.json', 'pass', 'absent'],
 ];
+
+const schemaState = (schemas) =>
+  (schemas === null || schemas === undefined ? 'absent' : schemas.map((e) => e.state).join(','));
 
 let failed = 0;
 
@@ -19,11 +22,12 @@ const rejected = await verifyCredential(await read('public/samples/no-proof.json
 console.log(`${rejected ? 'OK  ' : 'NG  '}${'no proof attached'.padEnd(28)} expected rejected -> ${rejected ? 'rejected' : 'attempted'}`);
 if (!rejected) failed += 1;
 
-for (const [name, path, expected] of CASES) {
-  const { outcome } = await verifyCredential(await read(path));
-  const ok = outcome === expected;
+for (const [name, path, expected, expectedSchema] of CASES) {
+  const result = await verifyCredential(await read(path));
+  const schema = schemaState(result.schemas);
+  const ok = result.outcome === expected && schema === expectedSchema;
   if (!ok) failed += 1;
-  console.log(`${ok ? 'OK  ' : 'NG  '}${name.padEnd(28)} expected ${expected} -> ${outcome}`);
+  console.log(`${ok ? 'OK  ' : 'NG  '}${name.padEnd(28)} expected ${expected}/${expectedSchema} -> ${result.outcome}/${schema}`);
 }
 
 const badge = await readFile('public/samples/genuine.svg', 'utf8').catch(() => null);

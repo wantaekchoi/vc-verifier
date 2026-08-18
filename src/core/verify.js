@@ -3,6 +3,7 @@ import { securityLoader } from '@digitalcredentials/security-document-loader';
 import { findSuite, firstProof } from './suites.js';
 import { bindingRows, didWebDocumentUrl, idOf } from './bindings.js';
 import { explainFailure } from './failures.js';
+import { checkSchemas } from './schema.js';
 
 const kindOfUrl = (url) =>
   url.startsWith('did:') ? 'DID document'
@@ -84,6 +85,7 @@ export async function verifyCredential(credential) {
       outcome: 'unsupported',
       declared: proof?.cryptosuite ?? proof?.type ?? '(no proof)',
       credential, proof, suite: null, fetches, didDocument, ms: 0,
+      schemas: await checkSchemas(credential, (f) => fetches.push(f)),
       rows: bindingRows({ credential, didDocument, signatureConfirmed: false }),
     };
   }
@@ -97,10 +99,11 @@ export async function verifyCredential(credential) {
   const didDocument = await issuerDocument(issuer, fetches);
   const failure = signature.ok ? null : explainFailure(signature.error);
   const rows = bindingRows({ credential, didDocument, signatureConfirmed: signature.ok });
+  const schemas = await checkSchemas(credential, (f) => fetches.push(f));
 
   return {
     outcome: outcomeOf({ signature, rows, failure }),
-    credential, proof, signature, failure, rows, fetches, ms, didDocument,
+    credential, proof, signature, failure, rows, fetches, ms, didDocument, schemas,
     suite: { id: suite.id, label: suite.label },
   };
 }

@@ -18,7 +18,9 @@
     "@digitalbazaar/data-integrity": "^2.5.0",
     "@digitalbazaar/eddsa-rdfc-2022-cryptosuite": "^1.3.0",
     "@digitalbazaar/vc": "^7.3.0",
-    "@digitalcredentials/security-document-loader": "^9.0.0"
+    "@digitalcredentials/security-document-loader": "^9.0.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
   },
   "description": "서명된 크리덴셜을 브라우저 안에서 검증하고, 무엇과 무엇을 맞춰봤는지 보여준다."
 }

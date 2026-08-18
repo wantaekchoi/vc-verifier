@@ -246,6 +246,24 @@ const sourcePanel = (credential, source) => {
     shareable && shareBlock(shareable));
 };
 
+const schemaPanel = (schemas) => {
+  if (!schemas?.length) return null;
+  return panel('Schema', { wide: true },
+    el('p', { class: 'panel__note',
+      text: 'The credential names a schema its shape should follow. This is a separate question from the signature and does not change the verdict above.' }),
+    el('table', { class: 'rows' },
+      el('tbody', {},
+        ...schemas.map((entry) =>
+          el('tr', { class: `row row--${entry.state}` },
+            el('th', { class: 'row__label', scope: 'row' },
+              ...named(['credentialSchema', '스키마'])),
+            el('td', { class: 'row__pair' },
+              entry.type && el('p', { class: 'val', text: entry.type }),
+              el('p', { class: 'val val--url', text: entry.id ?? '(none)' }),
+              el('p', { class: 'row__detail', text: entry.detail })),
+            el('td', { class: 'row__mark' }, markBlock(entry.state)))))));
+};
+
 const fetchesPanel = (fetches) => {
   if (!fetches.length) return null;
   const counts = fetches.reduce((acc, f) => {
@@ -301,6 +319,7 @@ export function renderResult(result, source) {
       identityPanel(credential, proof, didDocument),
       sourcePanel(credential, source),
       evidence.length ? evidencePanel(evidence, backed) : null,
+      schemaPanel(result.schemas),
       fetchesPanel(fetches)),
     el('p', { class: 'foot' },
       'Verified in ', count(result.ms), ' ms, inside this browser. The credential was never sent anywhere.'),
