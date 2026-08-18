@@ -1,0 +1,231 @@
+{
+  "@context" : [ "https://www.w3.org/ns/credentials/v2", "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json", "https://purl.imsglobal.org/spec/ob/v3p0/extensions.json" ],
+  "id" : "https://wantaekchoi.github.io/credentials/contributions.json",
+  "type" : [ "VerifiableCredential", "OpenBadgeCredential" ],
+  "issuer" : {
+    "id" : "did:web:wantaekchoi.github.io",
+    "type" : [ "Profile" ],
+    "name" : "wantaekchoi",
+    "url" : "https://github.com/wantaekchoi",
+    "image" : {
+      "id" : "https://github.com/wantaekchoi.png",
+      "type" : "Image"
+    }
+  },
+  "validFrom" : "2026-08-18T02:30:49Z",
+  "credentialSubject" : {
+    "id" : "did:web:wantaekchoi.github.io",
+    "type" : [ "AchievementSubject" ],
+    "achievement" : {
+      "id" : "https://wantaekchoi.github.io/credentials/achievements/contributions.json",
+      "type" : [ "Achievement" ],
+      "name" : "Open Source Contributions",
+      "description" : "Pull requests authored by the subject and merged into public open source projects.",
+      "image" : {
+        "id" : "https://github.com/wantaekchoi.png",
+        "type" : "Image"
+      },
+      "criteria" : {
+        "narrative" : "Each listed contribution is a pull request that the upstream maintainers merged. The workflow re-checks authorship and merge status against the GitHub API on every run, and refuses to issue the credential if any listed contribution fails that check."
+      }
+    }
+  },
+  "evidence" : [ {
+    "id" : "https://github.com/eGovFramework/egovframe-msa-common-components/pull/42",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-msa-common-components#42",
+    "description" : "fix(EgovBoard): 블로그 게시판 목록의 총 건수 조인 조건이 자기 자신을 비교하는 문제 수정"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/324",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#324",
+    "description" : "fix: EgovCryptoConfigReader가 형제 Reader와 달리 기본값을 베이스로 덮어쓰지 않는 문제 수정"
+  }, {
+    "id" : "https://github.com/pagefaultgames/pokerogue/pull/7612",
+    "type" : [ "Evidence" ],
+    "name" : "pagefaultgames/pokerogue#7612",
+    "description" : "fix(beta): use pt-BR as the Brazilian Portuguese locale key"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/318",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#318",
+    "description" : "fix: AbstractKrdsPaginationRenderer가 이름·Javadoc·형제 클래스와 다르게 abstract가 아닌 문제 수정"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/317",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#317",
+    "description" : "fix: EgovAccessDeniedHandler가 접근거부 URL 미설정 시 예외를 던지는 문제 수정"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/316",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#316",
+    "description" : "fix: EgovMongoDbRepository의 deleteDate 메서드명 오타(형제 클래스는 전부 deleteData) 수정"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/315",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#315",
+    "description" : "fix: EgovRedisConfiguration이 검증하는 connectTimeout/커넥션 풀 설정이 실제 연결 생성에 반영되지 않는 문제 수정"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/314",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#314",
+    "description" : "fix: sqlHierarchicalRoles 미설정 시 roleHierarchy()가 null을 반환해 로그인이 NPE로 죽는 문제 수정"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/313",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#313",
+    "description" : "fix: SecuredObjectServiceImpl의 requestMatcherType 기본값 'ant'가 DAO 미지원이라 ClassCastException을 내는 문제 수정"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/312",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#312",
+    "description" : "fix: EgovSecurityConfigReader가 형제 EgovAccessConfigReader와 달리 안전 기본값을 덮어쓰지 않는 문제 수정"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/311",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#311",
+    "description" : "fix: SimpleMessage가 value null을 허용해 인터페이스 문서와 모순되는 문제 수정"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-runtime/pull/310",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-runtime#310",
+    "description" : "fix: EgovStringUtil.containsInvalidChars(String, String) null 처리가 자기 문서·형제 오버로드와 반대로 동작하는 문제 수정"
+  }, {
+    "id" : "https://github.com/PokeAPI/pokekotlin/pull/160",
+    "type" : [ "Evidence" ],
+    "name" : "PokeAPI/pokekotlin#160",
+    "description" : "add missing EvolutionDetail fields for regional-variant evolutions"
+  }, {
+    "id" : "https://github.com/spring-projects/spring-boot/pull/51175",
+    "type" : [ "Evidence" ],
+    "name" : "spring-projects/spring-boot#51175",
+    "description" : "Correct exception type documented by resolveConfigLocation"
+  }, {
+    "id" : "https://github.com/pagefaultgames/pokerogue/pull/7573",
+    "type" : [ "Evidence" ],
+    "name" : "pagefaultgames/pokerogue#7573",
+    "description" : "fix(item): Grip Claw will no longer steal items when the holder is fainted"
+  }, {
+    "id" : "https://github.com/openstreetmap/iD/pull/12664",
+    "type" : [ "Evidence" ],
+    "name" : "openstreetmap/iD#12664",
+    "description" : "Delete the unused lane parsing code"
+  }, {
+    "id" : "https://github.com/spring-projects/spring-boot/pull/51117",
+    "type" : [ "Evidence" ],
+    "name" : "spring-projects/spring-boot#51117",
+    "description" : "Temporary file is not deleted when ExportedImageTar construction fails"
+  }, {
+    "id" : "https://github.com/PokeAPI/pokedex-promise-v2/pull/91",
+    "type" : [ "Evidence" ],
+    "name" : "PokeAPI/pokedex-promise-v2#91",
+    "description" : "fix: convert cacheLimit from ms to seconds for node-cache ttl"
+  }, {
+    "id" : "https://github.com/spring-projects/spring-boot/pull/51119",
+    "type" : [ "Evidence" ],
+    "name" : "spring-projects/spring-boot#51119",
+    "description" : "Fix stale type reference for OTLP logging transport metadata"
+  }, {
+    "id" : "https://github.com/spring-projects/spring-boot/pull/51110",
+    "type" : [ "Evidence" ],
+    "name" : "spring-projects/spring-boot#51110",
+    "description" : "Metadata for spring.test.mockmvc.htmlunit.url declares the wrong type"
+  }, {
+    "id" : "https://github.com/spring-projects/spring-boot/pull/51111",
+    "type" : [ "Evidence" ],
+    "name" : "spring-projects/spring-boot#51111",
+    "description" : "Caching documentation refers to AutoConfigureCache by its pre-4.0 package"
+  }, {
+    "id" : "https://github.com/PokeAPI/pokeapi-js-wrapper/pull/91",
+    "type" : [ "Evidence" ],
+    "name" : "PokeAPI/pokeapi-js-wrapper#91",
+    "description" : "fix: stop subtracting 1 from offset in Config"
+  }, {
+    "id" : "https://github.com/PokeAPI/pokedex-promise-v2/pull/92",
+    "type" : [ "Evidence" ],
+    "name" : "PokeAPI/pokedex-promise-v2#92",
+    "description" : "fix: remove off-by-one shift on constructor offset option"
+  }, {
+    "id" : "https://github.com/nodejs/node/pull/60426",
+    "type" : [ "Evidence" ],
+    "name" : "nodejs/node#60426",
+    "description" : "stream: add bytes() method to stream/consumers"
+  }, {
+    "id" : "https://github.com/1EdTech/digital-credentials-public-validator/pull/40",
+    "type" : [ "Evidence" ],
+    "name" : "1EdTech/digital-credentials-public-validator#40",
+    "description" : "test: fix @Nested static class not recognized by JUnit (fixes #39)"
+  }, {
+    "id" : "https://github.com/eGovFramework/egovframe-common-components/pull/737",
+    "type" : [ "Evidence" ],
+    "name" : "eGovFramework/egovframe-common-components#737",
+    "description" : "Update README"
+  }, {
+    "id" : "https://github.com/1EdTech/digital-credentials-public-validator/pull/32",
+    "type" : [ "Evidence" ],
+    "name" : "1EdTech/digital-credentials-public-validator#32",
+    "description" : "chore: remove .idea directory and ignore it"
+  }, {
+    "id" : "https://github.com/blockchain-certificates/explorer-lookup/pull/469",
+    "type" : [ "Evidence" ],
+    "name" : "blockchain-certificates/explorer-lookup#469",
+    "description" : "Migrate Etherscan Explorer to API V2 (#468)"
+  }, {
+    "id" : "https://github.com/1EdTech/digital-credentials-public-validator/pull/30",
+    "type" : [ "Evidence" ],
+    "name" : "1EdTech/digital-credentials-public-validator#30",
+    "description" : "Rename `JsonLDCompactionProve` to `JsonLDCompactionProbe`"
+  }, {
+    "id" : "https://github.com/OmniOneID/did-client-sdk-aos-kotlin/pull/9",
+    "type" : [ "Evidence" ],
+    "name" : "OmniOneID/did-client-sdk-aos-kotlin#9",
+    "description" : "[Resubmit] Remove all .idea directories from Git tracking and update .gitignore"
+  }, {
+    "id" : "https://github.com/OmniOneID/did-client-sdk-aos/pull/17",
+    "type" : [ "Evidence" ],
+    "name" : "OmniOneID/did-client-sdk-aos#17",
+    "description" : "Remove all .idea folders and unnecessary .gitignore files"
+  }, {
+    "id" : "https://github.com/Lee-WonJun/JDD-Description/pull/55",
+    "type" : [ "Evidence" ],
+    "name" : "Lee-WonJun/JDD-Description#55",
+    "description" : "\bfix typo"
+  }, {
+    "id" : "https://github.com/kimchicabbage/geo-api-ptoro/pull/4",
+    "type" : [ "Evidence" ],
+    "name" : "kimchicabbage/geo-api-ptoro#4",
+    "description" : "add: 사전 정의 된 위치 추가"
+  }, {
+    "id" : "https://github.com/kimchicabbage/geo-api-ptoro/pull/3",
+    "type" : [ "Evidence" ],
+    "name" : "kimchicabbage/geo-api-ptoro#3",
+    "description" : "코드 구조 개선"
+  }, {
+    "id" : "https://github.com/kimchicabbage/geo-api-ptoro/pull/2",
+    "type" : [ "Evidence" ],
+    "name" : "kimchicabbage/geo-api-ptoro#2",
+    "description" : "feat: 거리 계산 구현"
+  }, {
+    "id" : "https://github.com/kimchicabbage/geo-api-ptoro/pull/1",
+    "type" : [ "Evidence" ],
+    "name" : "kimchicabbage/geo-api-ptoro#1",
+    "description" : "feat: 위치 메시지에 프로퍼티 값 추가"
+  }, {
+    "id" : "https://github.com/pedrorito/ChatGPTSlackBot/pull/9",
+    "type" : [ "Evidence" ],
+    "name" : "pedrorito/ChatGPTSlackBot#9",
+    "description" : "feat: add rust install"
+  } ],
+  "credentialSchema" : [ {
+    "id" : "https://purl.imsglobal.org/spec/ob/v3p0/schema/json/ob_v3p0_achievementcredential_schema.json",
+    "type" : "1EdTechJsonSchemaValidator2019"
+  } ],
+  "proof" : {
+    "type" : "DataIntegrityProof",
+    "cryptosuite" : "eddsa-rdfc-2022",
+    "created" : "2026-08-18T02:30:49Z",
+    "verificationMethod" : "did:web:wantaekchoi.github.io#gh-ed25519",
+    "proofPurpose" : "assertionMethod",
+    "proofValue" : "zRw7c63FnVHAxPFkp1fohaZMFTi1tE7B5V63c2NtKaBmi8YCynhB9DzcAZwojkYUpCsAjVG4gHT1uH4dNez3HqBB"
+  }
+}
